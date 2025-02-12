@@ -1,0 +1,83 @@
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+/* Contenedor del chat */
+.chat-container {
+  width: 400px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Área de mensajes */
+.chat-box {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilos para los mensajes */
+.message {
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  max-width: 70%;
+  position: relative;
+}
+
+/* Mensaje del usuario (alineado a la derecha) */
+.user-message {
+  background-color: #007bff;
+  color: #fff;
+  align-self: flex-end; /* Alinea a la derecha */
+}
+
+/* Mensaje de la IA (alineado a la izquierda) */
+.ai-message {
+  background-color: #f1f1f1;
+  color: #333;
+  align-self: flex-start; /* Alinea a la izquierda */
+}
+
+/* Contenedor de entrada de texto */
+.input-container {
+  display: flex;
+  padding: 8px;
+  background-color: #f9f9f9;
+}
+
+.input-container input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+.input-container button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.input-container button:hover {
+  background-color: #0056b3;
+}
