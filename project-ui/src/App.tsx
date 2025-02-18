@@ -10,17 +10,16 @@ interface Message {
   sender: "user" | "bot";
 }
 
-// 📌 Reemplaza con tu dominio en Fly.io
-const API_URL = "https://tu-app.fly.dev/chat";
+const API_URL = "http://localhost:5000/chat";
 
 const App: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
-  const [loading, setLoading] = useState(false); // Para mostrar indicador de carga
+  const [loading, setLoading] = useState(false);
 
   const sendMessage = async (text: string) => {
     const userMessage: Message = { text, sender: "user" };
     setMessages((prev) => [...prev, userMessage]);
-    setLoading(true); // Indicar que se está procesando la respuesta
+    setLoading(true);
 
     try {
       const response = await axios.post(API_URL, { message: text }, {
@@ -30,8 +29,11 @@ const App: React.FC = () => {
       const botMessage: Message = { text: response.data.response, sender: "bot" };
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
-      console.error("Error al enviar mensaje:", error);
-      const errorMessage: Message = { text: "⚠️ Error: No se pudo obtener respuesta.", sender: "bot" };
+      console.error("Error al conectar con el backend:", error);
+      const errorMessage: Message = {
+        text: "⚠️ No se pudo conectar con el servidor. Asegúrate de que Flask esté corriendo.",
+        sender: "bot"
+      };
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
       setLoading(false);
@@ -43,7 +45,7 @@ const App: React.FC = () => {
       <Header />
       <div className="chat-container">
         <ChatBox messages={messages} />
-        {loading && <p className="loading">⏳ Pensando...</p>} {/* Indicador de carga */}
+        {loading && <p className="loading">⏳ Pensando...</p>}
         <InputBox onSend={sendMessage} />
       </div>
     </div>
